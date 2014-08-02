@@ -23,19 +23,18 @@ public Action:Say_Hook(client, args)
 	GetCmdArgString(sText, sizeof(sText));
 	StripQuotes(sText);
 
-	new AdminId:ID = GetUserAdmin(client);
-	new Team       = GetClientTeam(client);
+	new Team = GetClientTeam(client);
 
-	if(ID != INVALID_ADMIN_ID)
+	if(GetUserAdmin(client) != INVALID_ADMIN_ID)
 	{
-		if(client > 0 && client <= MaxClients && IsClientInGame(client))
+		if(strlen(sText) > 0 && client > 0 && client <= MaxClients && IsClientInGame(client))
 		{
 			if(Team == CS_TEAM_T)
-				PrintToChatAll("[Admin] \x02%N: \x01%s", client, sText);
+				PrintToChatAll("[iesaba] \x09%N: \x05%s", client, sText);
 			else if (Team == CS_TEAM_CT)
-				PrintToChatAll("[Admin] \x04%N: \x01%s", client, sText);
+				PrintToChatAll("[iesaba] \x0d%N: \x05%s", client, sText);
 			else
-				PrintToChatAll("[Admin] \x0e%N: \x01%s", client, sText);
+				PrintToChatAll("[iesaba] \x0e%N: \x05%s", client, sText);
 		}
 	}
 	else
