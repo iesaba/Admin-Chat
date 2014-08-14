@@ -20,6 +20,7 @@ public OnPluginStart()
 public Action:Say_Hook(client, args)
 {
 	decl String:sText[192];
+	decl String:sDead[8];
 	GetCmdArgString(sText, sizeof(sText));
 	StripQuotes(sText);
 
@@ -29,10 +30,12 @@ public Action:Say_Hook(client, args)
 	{
 		if(strlen(sText) > 0 && client > 0 && client <= MaxClients && IsClientInGame(client))
 		{
+			sDead = IsPlayerAlive(client) ? "" : "*DEAD* ";
+			
 			if(Team == CS_TEAM_T)
-				PrintToChatAll("[iesaba] \x09%N: \x05%s", client, sText);
+				PrintToChatAll("[iesaba] %s\x09%N: \x05%s", sDead, client, sText);
 			else if (Team == CS_TEAM_CT)
-				PrintToChatAll("[iesaba] \x0d%N: \x05%s", client, sText);
+				PrintToChatAll("[iesaba] %s\x0d%N: \x05%s", sDead, client, sText);
 			else
 				PrintToChatAll("[iesaba] \x0e%N: \x05%s", client, sText);
 		}
